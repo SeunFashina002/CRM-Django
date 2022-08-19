@@ -1,5 +1,6 @@
 from django import forms
-from .models import Lead
+from .models import Lead, User
+from django.contrib.auth.forms import UserCreationForm, UsernameField
 
 class LeadForm(forms.ModelForm):
     class Meta:
@@ -10,3 +11,11 @@ class LeadForm(forms.ModelForm):
             'age',
             'agent',
         )
+
+#we are creating our custom form because in our model we inherited from abstract user. There will be a conflict
+
+class CustomUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username',)
+        field_classes = {'username': UsernameField}

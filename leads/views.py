@@ -1,6 +1,10 @@
+from django.urls import reverse
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
+from django.views.generic import DeleteView, CreateView
+from django.contrib.auth.forms import UserCreationForm
 from .models import Lead
-from .forms import LeadForm
+from .forms import LeadForm, CustomUserForm
 
 # this view render the homepage
 def index(request):
@@ -63,7 +67,26 @@ def lead_update(request, pk):
     }
     return render(request, 'lead_update.html', context)
 
-def lead_delete(request, pk):
-    lead = Lead.objects.get(id=pk)
-    lead.delete()
-    return redirect('lead_list')
+
+class LeadDeleteView(DeleteView):
+    template_name = 'lead_delete.html'
+    queryset = Lead.objects.all()
+    
+    def get_success_url(self):
+        return reverse('lead_list')
+
+
+class Login(LoginView):
+    template_name = 'registration/login.html'
+
+
+# CustomuserForm is defined in my forms.py
+class Signup(CreateView):
+    template_name = 'registration/signup.html'
+    form_class = CustomUserForm
+
+    def get_success_url(self):
+        return reverse('login')
+
+    
+    
