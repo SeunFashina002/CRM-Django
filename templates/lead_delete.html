@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="post" class="mt-32 p-6 rounded-lg border-2 border-gray-800">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p class="text-2xl my-6">Are you sure you want to delete <span class="font-bold text-1xl my-6 text-bg-gray-800"> {{lead}} </span></p>
+
+        <button style="background-color: red;" class="mr-4 rounded-lg border-2 p-2 w-24 text-white" type="submit">Yes</button>
+
+        <a href="{% url 'lead_list' %}"  class="hover:bg-gray-800 hover:text-white rounded-lg  border-2 border-gray-400 p-2 w-24 text-gray-800"> Cancel</a>
+
+    </form>
+{% endblock %}
