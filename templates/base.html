@@ -19,9 +19,11 @@
                 </a>
 
                 <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a href="{% url 'lead_list' %}" class="mr-5 hover:text-white">Leads</a>
                     {% if not request.user.is_authenticated %}
                         <a href="{% url 'signup' %}" class="mr-5 hover:text-white">sign up</a>
+                    {% else %}
+                    <a href="{% url 'lead_list' %}" class="mr-5 hover:text-white">Leads</a>
+                    <a href="{% url 'agent_list' %}" class="mr-5 hover:text-white">Agents</a>
                     {% endif %}
                 </nav>
 

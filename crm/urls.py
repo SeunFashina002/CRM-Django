@@ -20,7 +20,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('leads.urls'))
+    path('', include('leads.urls')),
+    path('', include('agents.urls'))
 ]
 
 if settings.DEBUG:

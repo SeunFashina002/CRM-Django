@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'leads'
+    'leads',
+    'agents',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,4 @@ AUTH_USER_MODEL = 'leads.User'
 
 LOGIN_REDIRECT_URL = '/leads'
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/login'

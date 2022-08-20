@@ -1,4 +1,6 @@
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.views.generic import DeleteView, CreateView
@@ -11,6 +13,7 @@ def index(request):
     return render(request, 'index.html')
 
 # this view query all the leads in the database
+@login_required(login_url='/login')
 def lead_list(request):
 
     leads = Lead.objects.all()
@@ -24,6 +27,7 @@ def lead_list(request):
 #it is then passed to the concerned url in urls.py and the page
 # the view attached to the url recieves the value of lead.id and render template base on the query in the view
 
+@login_required(login_url='/login')
 def lead_detail(request, pk):
     lead = Lead.objects.get(id=pk)
     context = {
@@ -33,6 +37,7 @@ def lead_detail(request, pk):
     
 
 # this view render the form that creates new leads
+@login_required(login_url='/login')
 def lead_create(request):
     form = LeadForm()
     if request.method == 'POST':
@@ -48,6 +53,7 @@ def lead_create(request):
     }
     return render(request, 'lead_create.html', context)
 
+@login_required(login_url='/login')
 def lead_update(request, pk):
     # get the specific lead you want to update
     lead = Lead.objects.get(id=pk)
@@ -68,7 +74,7 @@ def lead_update(request, pk):
     return render(request, 'lead_update.html', context)
 
 
-class LeadDeleteView(DeleteView):
+class LeadDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'lead_delete.html'
     queryset = Lead.objects.all()
     
