@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load tailwind_filters %}
 
 {% block content %}
     <form action="" method="post" class="mt-32 p-6 rounded-lg border-2 border-gray-800">
         {% csrf_token %}
-        {{form.as_p}}
+        {{ form|crispy }}
         <p class="text-2xl my-6">Are you sure you want to delete <span class="font-bold text-1xl my-6 text-bg-gray-800"> {{lead}} </span></p>
 
         <button style="background-color: red;" class="mr-4 rounded-lg border-2 p-2 w-24 text-white" type="submit">Yes</button>

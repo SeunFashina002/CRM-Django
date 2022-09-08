@@ -18,7 +18,7 @@
                     <a href="{% url 'lead_detail' lead.id %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
                         Overview
                     </a>
-                    <a href="{% url 'lead_update' lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+                    <a href="{% url 'lead_category_update' lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
                         Category
                     </a>
                     <a href="{% url 'lead_update' lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
@@ -31,12 +31,17 @@
                 </div>
                 <div class="flex border-t border-gray-300 py-2">
                     <span class="text-gray-500">Email</span>
-                    <span class="ml-auto text-gray-900">dummyemail@gmail.com</span>
+                    <span class="ml-auto text-gray-900">{{lead.email}}</span>
                 </div>
                 <div class="flex border-t border-b mb-6 border-gray-300 py-2">
                     <span class="text-gray-500">Phone Number</span>
-                    <span class="ml-auto text-gray-900">+234-000001-1200</span>
+                    <span class="ml-auto text-gray-900">{{lead.phone_number}}</span>
                 </div>
+                <div class="border-b mb-6 border-gray-300 pb-2">
+                    <p class="text-gray-500">Description</p>
+                    <small class="ml-auto text-gray-900">{{lead.description}}</small>
+                </div>
+
             </div>
 
         </div>
